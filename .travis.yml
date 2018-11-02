@@ -2,6 +2,15 @@ sudo: required
 services:
   - docker
 before_install:
-  - 
+  - docker build -t tjdalsvndn9/react-docker -f ./client Dockerfile.dev ./client
 script:
-  - docker
+  - docker run tjdalsvndn9/react-docker npm run test -- --coverage
+
+after_success:
+  - docker build -t tjdalsvndn9/multi-client ./client
+  - docker build -t tjdalsvndn9/multi-ngnix ./ngnix
+  - docker build -t tjdalsvndn9/multi-server ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push tjdalsvndn9/multi-client
+  - docker push tjdalsvndn9/multi-ngnix
+  - docker push tjdalsvndn9/multi-server
