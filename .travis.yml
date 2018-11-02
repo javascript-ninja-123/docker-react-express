@@ -2,7 +2,7 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t tjdalsvndn9/react-docker -f ./client Dockerfile.dev ./client
+  - docker build -t tjdalsvndn9/react-docker -f ./client/Dockerfile.dev ./client
 script:
   - docker run tjdalsvndn9/react-docker npm run test -- --coverage
 
