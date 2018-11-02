@@ -6,39 +6,31 @@ const {expect} = chai;
 
 describe('api test', () => {
 
-  it('test', () => {
-    expect(5).to.equal(5)
-    expect(6).to.equal(6)
+      let server;
+    beforeEach( () =>  {
+        server = require('../index');
+    });
+    afterEach( () =>  {
+        server.close();
+    });
+
+  it('post /user', (done) => {
+    const username = faker.name.findName()
+    request(server)
+    .post('/user')
+    .send({
+      username
+    })
+    .end((err,res) => {
+      expect(res.body.username).to.equal(username)
+      done();
+    })
   })
-  //     let server;
-  //     beforeEach( () =>  {
-  //       server = require('../index');
-  //     });
-  //     afterEach( () =>  {
-  //       server.close();
-  //     });
-  //
-  // it('post /user', (done) => {
-  //   const username = faker.name.findName()
-  //   request(server)
-  //   .post('/user')
-  //   .send({
-  //     username
-  //   })
-  //   .end((err,res) => {
-  //     expect(res).to.have.status(200)
-  //     expect(res.username).to.equal(username)
-  //     done();
-  //   })
-  // })
-  //
-  // it('get /users', done => {
-  //   request(server)
-  //   .get('/users')
-  //   .end((err,res) => {
-  //     expect(res).to.have.status(200)
-  //     done();
-  //   })
-  // })
+
+  it('get /users', done => {
+    request(server)
+    .get('/users')
+    .expect(200, done);
+  })
 
 })

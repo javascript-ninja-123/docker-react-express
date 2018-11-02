@@ -12,4 +12,4 @@ app.use(cors());
 require('./routes')(app)
 
 
-app.listen(5000, ()=> console.log('it should work the way we want'))
+module.exports = app.listen(5000, ()=> console.log('it should work the way we want'))

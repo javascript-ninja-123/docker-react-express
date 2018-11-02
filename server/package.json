@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js",
-    "test": "mocha ./test/**"
+    "test": "MONGOOSE_KEY=mongodb://tjdalsvndn9:skswltn123@ds235807.mlab.com:35807/docker-backend mocha ./test/**"
   },
   "keywords": [],
   "author": "",
