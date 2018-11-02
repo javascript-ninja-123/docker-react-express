@@ -8,6 +8,7 @@ describe('api test', () => {
 
   it('test', () => {
     expect(5).to.equal(5)
+    expect(6).to.equal(6)
   })
   //     let server;
   //     beforeEach( () =>  {
